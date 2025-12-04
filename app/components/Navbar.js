@@ -9,7 +9,7 @@ export default function Navbar() {
           <Link href="/" className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent hover:from-blue-300 hover:to-cyan-300 transition-all duration-300">
             Portfolio
           </Link>
-          
+
           {/* Navigation links */}
           <div className="flex gap-8 items-center">
             <Link href="/" className="text-gray-300 hover:text-white transition-colors duration-200 font-medium">

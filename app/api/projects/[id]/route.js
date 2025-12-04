@@ -2,12 +2,9 @@ import { PrismaClient } from '@prisma/client';
 import { NextResponse } from 'next/server';
 
 const prisma = new PrismaClient();
-
 export async function GET(request, { params }) {
   try {
     const id = parseInt(params.id);
-    
-    // Validate that id is a number
     if (isNaN(id)) {
       return NextResponse.json(
         { error: 'Invalid project ID' },
@@ -39,7 +36,6 @@ export async function GET(request, { params }) {
 export async function PUT(request, { params }) {
   try {
     const id = parseInt(params.id);
-    
     if (isNaN(id)) {
       return NextResponse.json(
         { error: 'Invalid project ID' },
@@ -84,7 +80,6 @@ export async function PUT(request, { params }) {
 export async function DELETE(request, { params }) {
   try {
     const id = parseInt(params.id);
-    
     if (isNaN(id)) {
       return NextResponse.json(
         { error: 'Invalid project ID' },
@@ -98,6 +93,12 @@ export async function DELETE(request, { params }) {
 
     return NextResponse.json({ message: 'Project deleted successfully' });
   } catch (error) {
+    if (error.code === 'P2025' || error.message?.includes('Record to delete does not exist')) {
+      return NextResponse.json(
+        { error: 'Project not found' },
+        { status: 404 }
+      );
+    }
     console.error('Error deleting project:', error);
     
     // Handle Prisma "record not found" error

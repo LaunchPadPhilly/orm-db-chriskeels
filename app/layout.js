@@ -3,9 +3,9 @@ import NavBar from './components/Navbar'
 import Footer from './components/Footer'
 
 export const metadata = {
-  title: 'My Portfolio',
-  description: 'A Next.js portfolio website showcasing my projects and skills',
-}
+  title: 'Portfolio',
+  description: 'Student portfolio site',
+};
 
 export default function RootLayout({ children }) {
   return (
